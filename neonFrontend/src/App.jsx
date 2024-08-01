@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<UploadPage/>}/>
         <Route path='/view' element={<View/>}/>
-        <Route path='/VideoView' element={<VideoView/>}/>
+        <Route path='/VideoView/:id' element={<VideoView/>}/>   
       </Routes>
     </Router>
       {/* <UploadPage/> */}

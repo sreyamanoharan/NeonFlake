@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 
-
 const UploadPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -22,8 +21,8 @@ const UploadPage = () => {
             "https://api.cloudinary.com/v1_1/ds0dvm4ol/image/upload?upload_preset=react-project",
             formData
           );
-          setThumbnail(result)
-          console.log(thumbnail.data.secure_url,"hu");
+          setThumbnail(result.data.secure_url);
+          console.log(thumbnail, "hu");
         } catch (error) {
           console.log(error);
         }
@@ -45,8 +44,8 @@ const UploadPage = () => {
             "https://api.cloudinary.com/v1_1/ds0dvm4ol/video/upload?upload_preset=react-project",
             formData
           );
-          setVideo(result)
-          console.log(video.data.secure_url);
+          setVideo(result.data.secure_url);
+          console.log(video);
         } catch (error) {
           console.log(error);
         }
@@ -58,13 +57,15 @@ const UploadPage = () => {
     title,
     description,
     thumbnail,
-    video
-  }
+    video,
+  };
   console.log(input);
 
   const handleSubmit = (e) => {
-    console.log("hi");
     e.preventDefault();
+    axios.post("http://localhost:4000/inserting", { input }).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
@@ -111,7 +112,7 @@ const UploadPage = () => {
           <input
             type="file"
             accept="video/mp4, video/avi, video/mpg"
-            onChange={(e)=>handleVideoUpload(e)}
+            onChange={(e) => handleVideoUpload(e)}
             required
           />
         </div>
