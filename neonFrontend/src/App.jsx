@@ -1,13 +1,22 @@
 import { useState } from 'react'
 import UploadPage from './Pages/UploadPage'
 import './App.css'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import View from './Pages/View'
+import VideoView from './Pages/VideoView'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <UploadPage/>
+    <Router>
+      <Routes>
+        <Route path='/' element={<UploadPage/>}/>
+        <Route path='/view' element={<View/>}/>
+        <Route path='/VideoView' element={<VideoView/>}/>
+      </Routes>
+    </Router>
+      {/* <UploadPage/> */}
     </>
   )
 }
